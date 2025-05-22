@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brigadier Virtual - Colegio Militar General Santander</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="https://colmilgeneralsantander.edu.co/images/icon2023.png">
+    <meta name="description" content="Asistente virtual del Colegio Militar General Santander - Bucaramanga. Información sobre inscripciones, horarios, requisitos y más.">
+    <meta name="keywords" content="Colegio Militar, General Santander, Bucaramanga, educación militar, inscripciones, admisiones">
+</head>
+<body>
+    <div class="chatbot-container">
+        <!-- Header del chatbot con brigadier -->
+        <div class="chatbot-header">
+            <div class="brigadier-avatar">
+                <img src="https://colmilgeneralsantander.edu.co/images/icon2023.png" alt="Brigadier CMGS" class="avatar-img">
+            </div>
+            <div class="header-content">
+                <div class="chatbot-title">🎖️ Brigadier Virtual CMGS</div>
+                <div class="chatbot-subtitle">Colegio Militar General Santander</div>
+                <div class="chatbot-lema">"Patria, Superación y Orden"</div>
+            </div>
+        </div>
+        
+        <!-- Área de mensajes -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">
+                    <img src="https://colmilgeneralsantander.edu.co/images/icon2023.png" alt="Brigadier" class="msg-avatar">
+                </div>
+                <div class="message-content">
+                    ¡Saludo militar, cadete! 🎖️ Soy el Brigadier Virtual del Colegio Militar General Santander. Con 59 años de tradición educativa, estoy aquí para asistirte con información sobre nuestros procesos de admisión, formación académica y disciplinaria. ¿En qué puedo servirte hoy?
+                    <div class="quick-options">
+                        <div class="quick-option" onclick="selectQuickOption('admisiones')">📋 Admisiones 2025</div>
+                        <div class="quick-option" onclick="selectQuickOption('horarios')">⏰ Horarios</div>
+                        <div class="quick-option" onclick="selectQuickOption('contacto')">📞 Contacto</div>
+                        <div class="quick-option" onclick="selectQuickOption('formacion')">🎖️ Formación Militar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Indicador de escritura -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-avatar">
+                <img src="https://colmilgeneralsantander.edu.co/images/icon2023.png" alt="Brigadier" class="typing-img">
+            </div>
+            <div class="typing-content">
+                <span>El Brigadier está escribiendo</span>
+                <div class="typing-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Área de entrada de texto -->
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Escribe tu consulta, cadete..."
+                    rows="1"
+                ></textarea>
+                <button class="send-button" id="sendButton" onclick="sendMessage()" title="Enviar mensaje">
+                    <span class="send-icon">➤</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información institucional footer -->
+    <div class="institutional-info">
+        <p><strong>Colegio Militar General Santander</strong> | Fundado en 1965 | 59 años de tradición educativa</p>
+        <p>Diagonal 32 #30a-05, Salida a Pamplona, Bucaramanga | Tel: (607) 7008460</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/knowledgeBase.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

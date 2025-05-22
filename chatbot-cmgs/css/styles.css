@@ -1,0 +1,623 @@
+/* ===== RESET Y CONFIGURACIÓN BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores institucionales del CMGS */
+    --cmgs-red: #C41E3A;
+    --cmgs-dark-red: #8B0000;
+    --cmgs-gold: #FFD700;
+    --cmgs-dark-gold: #B8860B;
+    --cmgs-white: #FFFFFF;
+    --cmgs-cream: #F5F5DC;
+    --cmgs-dark-green: #2F4F2F;
+    --cmgs-military-green: #4F7942;
+    --cmgs-gray: #2F2F2F;
+    --cmgs-light-gray: #F8F9FA;
+}
+
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 50%, var(--cmgs-gray) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Fondo militar con textura */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(196, 30, 58, 0.1) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.02) 50%, transparent 51%);
+    z-index: -1;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.chatbot-container {
+    background: var(--cmgs-white);
+    border: 3px solid var(--cmgs-gold);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 215, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 450px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    background-image: 
+        linear-gradient(45deg, transparent 49%, rgba(255, 215, 0, 0.02) 50%, transparent 51%);
+}
+
+/* ===== HEADER DEL CHATBOT ===== */
+.chatbot-header {
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 100%);
+    color: var(--cmgs-white);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 3px solid var(--cmgs-gold);
+}
+
+.chatbot-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.05) 50%, transparent 51%);
+    z-index: 1;
+}
+
+.brigadier-avatar {
+    position: relative;
+    z-index: 2;
+    margin-right: 15px;
+}
+
+.avatar-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--cmgs-gold);
+    background: var(--cmgs-white);
+    padding: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.chatbot-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-subtitle {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    font-weight: 600;
+}
+
+.chatbot-lema {
+    font-size: 0.8rem;
+    color: var(--cmgs-gold);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* ===== ÁREA DE MENSAJES ===== */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: var(--cmgs-light-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-image: 
+        linear-gradient(90deg, transparent 49%, rgba(196, 30, 58, 0.02) 50%, transparent 51%);
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    animation: slideInMessage 0.4s ease;
+    max-width: 85%;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-avatar, .msg-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--cmgs-gold);
+    background: var(--cmgs-white);
+    padding: 1px;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background: var(--cmgs-white);
+    border: 2px solid var(--cmgs-red);
+    border-radius: 15px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--cmgs-gray);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.1);
+    position: relative;
+}
+
+.message.bot .message-content::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid var(--cmgs-red);
+}
+
+.message.user .message-content {
+    background: var(--cmgs-red);
+    color: var(--cmgs-white);
+    border-color: var(--cmgs-dark-red);
+}
+
+.message.user .message-content::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid var(--cmgs-dark-red);
+}
+
+/* ===== OPCIONES RÁPIDAS ===== */
+.quick-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.quick-option {
+    background: linear-gradient(135deg, var(--cmgs-gold) 0%, var(--cmgs-dark-gold) 100%);
+    color: var(--cmgs-gray);
+    border: 2px solid var(--cmgs-dark-gold);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3);
+}
+
+.quick-option:hover {
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 100%);
+    color: var(--cmgs-white);
+    border-color: var(--cmgs-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
+}
+
+/* ===== BOTONES DE ENLACES ===== */
+.link-button {
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 100%);
+    color: var(--cmgs-white);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 5px 5px 0 0;
+    transition: all 0.3s ease;
+    border: 2px solid var(--cmgs-gold);
+    box-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
+}
+
+.link-button:hover {
+    background: linear-gradient(135deg, var(--cmgs-gold) 0%, var(--cmgs-dark-gold) 100%);
+    color: var(--cmgs-gray);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* ===== INDICADOR DE ESCRITURA ===== */
+.typing-indicator {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin: 0 20px 10px 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid var(--cmgs-gold);
+}
+
+.typing-avatar .typing-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--cmgs-gold);
+    background: var(--cmgs-white);
+    padding: 1px;
+}
+
+.typing-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cmgs-gray);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cmgs-red);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* ===== ÁREA DE ENTRADA ===== */
+.chat-input-container {
+    padding: 20px;
+    background: var(--cmgs-white);
+    border-top: 3px solid var(--cmgs-gold);
+}
+
+.chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--cmgs-red);
+    border-radius: 25px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    resize: none;
+    min-height: 20px;
+    max-height: 100px;
+    font-family: inherit;
+    background: var(--cmgs-cream);
+}
+
+.chat-input:focus {
+    border-color: var(--cmgs-gold);
+    background: var(--cmgs-white);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.send-button {
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 100%);
+    color: var(--cmgs-white);
+    border: 2px solid var(--cmgs-gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3);
+}
+
+.send-button:hover {
+    background: linear-gradient(135deg, var(--cmgs-gold) 0%, var(--cmgs-dark-gold) 100%);
+    color: var(--cmgs-gray);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+.send-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== INFORMACIÓN INSTITUCIONAL ===== */
+.institutional-info {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--cmgs-white);
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.institutional-info p {
+    margin: 2px 0;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes typing {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes militaryPulse {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
+    }
+}
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: var(--cmgs-cream);
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--cmgs-red), var(--cmgs-dark-red));
+    border-radius: 10px;
+    border: 1px solid var(--cmgs-gold);
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--cmgs-gold), var(--cmgs-dark-gold));
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .chatbot-container {
+        height: calc(100vh - 120px);
+        max-height: none;
+        border-radius: 15px;
+    }
+    
+    .chatbot-header {
+        padding: 15px;
+    }
+    
+    .chatbot-title {
+        font-size: 1.2rem;
+    }
+    
+    .avatar-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .message {
+        max-width: 95%;
+    }
+    
+    .message-content {
+        font-size: 0.9rem;
+    }
+    
+    .quick-option {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .institutional-info {
+        font-size: 0.7rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    .chatbot-header {
+        padding: 12px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .brigadier-avatar {
+        margin-right: 0;
+    }
+    
+    .chat-messages {
+        padding: 15px;
+    }
+    
+    .chat-input-container {
+        padding: 15px;
+    }
+    
+    .quick-options {
+        gap: 6px;
+    }
+    
+    .quick-option {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+}
+
+/* ===== MODO WIDGET FLOTANTE ===== */
+.chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 380px;
+    height: 600px;
+    z-index: 9999;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.chatbot-widget .chatbot-container {
+    height: 100%;
+    max-width: none;
+    border-radius: 0;
+}
+
+.chat-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--cmgs-red) 0%, var(--cmgs-dark-red) 100%);
+    border: 3px solid var(--cmgs-gold);
+    border-radius: 50%;
+    color: var(--cmgs-white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 6px 20px rgba(196, 30, 58, 0.4),
+        0 0 0 0 rgba(255, 215, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: militaryPulse 2s infinite;
+}
+
+.chat-toggle-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, var(--cmgs-gold) 0%, var(--cmgs-dark-gold) 100%);
+    color: var(--cmgs-gray);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+}
+
+.chat-toggle-button.active {
+    background: linear-gradient(135deg, var(--cmgs-dark-red) 0%, #8B0000 100%);
+    animation: none;
+}
+
+.chat-toggle-button img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* ===== EFECTOS ESPECIALES ===== */
+.military-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--cmgs-gold);
+    color: var(--cmgs-gray);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid var(--cmgs-dark-gold);
+}
+
+.rank-indicator {
+    background: linear-gradient(45deg, var(--cmgs-gold), var(--cmgs-dark-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
+
+/* ===== TEMA PARA IMPRESIÓN ===== */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .chatbot-container {
+        box-shadow: none;
+        border: 2px solid black;
+    }
+    
+    .institutional-info {
+        color: black;
+        background: white;
+        border: 1px solid black;
+    }
+}
