@@ -12,26 +12,27 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <div class="logo-container">
-          <a href="/" class="logo">
+        <!-- Logo y nombre del colegio -->
+        <div class="logo-section">
+          <div class="logo-title">
             <h1>Colegio Militar</h1>
             <h2>General Santander</h2>
-            <div class="social-icons">
-              <a href="https://facebook.com" class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://tiktok.com" class="social-icon tiktok">
-                <i class="fab fa-tiktok"></i>
-              </a>
-              <a href="https://instagram.com" class="social-icon instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </div>
-          </a>
+          </div>
+          <div class="social-icons">
+            <a href="https://facebook.com" class="social-icon">
+              <img src="assets/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://tiktok.com" class="social-icon">
+              <img src="assets/tiktok.png" alt="TikTok">
+            </a>
+            <a href="https://instagram.com" class="social-icon">
+              <img src="assets/imstagram.png" alt="Instagram">
+            </a>
+          </div>
         </div>
 
-        <!-- Desktop Navigation -->
-        <nav class="desktop-nav">
+        <!-- Navegación central -->
+        <nav class="main-nav">
           <a href="/" class="nav-item active">Inicio</a>
           <a href="/servicios" class="nav-item">Servicios</a>
           <a href="/inscripciones" class="nav-item">Inscripciones</a>
@@ -41,23 +42,31 @@
           <a href="/phidias" class="nav-item">Phidias</a>
         </nav>
 
-        <div class="certification-logos">
-          <img src="placeholder.svg" alt="Santillana Logo" class="cert-logo">
-          <img src="placeholder.svg" alt="Compartir Logo" class="cert-logo">
-          <div class="cert-group">
-            <img src="placeholder.svg" alt="Certificación 1" class="cert-logo small">
-            <img src="placeholder.svg" alt="Certificación 2" class="cert-logo small">
-            <img src="placeholder.svg" alt="Certificación 3" class="cert-logo small">
+        <!-- Logos centrales -->
+        <div class="center-logos">
+          <div class="santillana-logo">
+            <img src="assets/santillana_logo.png" alt="Santillana">
+          </div>
+          <div class="compartir-logo">
+            <img src="assets/Wix.webp" alt="Compartir">
           </div>
         </div>
 
+        <!-- Certificaciones -->
+        <div class="certifications">
+          <img src="assets/iqnet.png" alt="Certificación ICONTEC" class="cert-logo">
+          <img src="assets/9001.png" alt="Certificación ISO 9001" class="cert-logo">
+          <img src="assets/21001.png" alt="Certificación ISO 21001" class="cert-logo">
+        </div>
+
+        <!-- Botón de menú móvil -->
         <button class="mobile-menu-btn">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </div>
 
-    <!-- Mobile Navigation -->
+    <!-- Menú móvil -->
     <div class="mobile-nav">
       <a href="/" class="mobile-nav-item active">Inicio</a>
       <a href="/servicios" class="mobile-nav-item">Servicios</a>
@@ -402,6 +411,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/573XXXXXXXXX" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>

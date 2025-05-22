@@ -107,31 +107,35 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+    flex-wrap: wrap;
   }
   
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
+  /* Logo y título */
+  .logo-section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   
-  .logo h1 {
+  .logo-title {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logo-title h1 {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--black);
     text-transform: uppercase;
+    line-height: 1.2;
   }
   
-  .logo h2 {
+  .logo-title h2 {
     font-size: 0.875rem;
     color: var(--black);
     text-transform: uppercase;
+    line-height: 1.2;
   }
   
   .social-icons {
@@ -140,29 +144,18 @@
     margin-top: 0.5rem;
   }
   
-  .social-icon {
+  .social-icon img {
     width: 2rem;
     height: 2rem;
-    display: flex;
+    object-fit: contain;
+  }
+  
+  /* Navegación principal */
+  .main-nav {
+    display: none;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-  }
-  
-  .facebook {
-    color: #1877f2;
-  }
-  
-  .tiktok {
-    color: var(--black);
-  }
-  
-  .instagram {
-    color: #e1306c;
-  }
-  
-  .desktop-nav {
-    display: none;
+    margin: 0 auto;
   }
   
   .nav-item {
@@ -171,6 +164,7 @@
     font-weight: 500;
     color: var(--black);
     transition: color 0.3s ease;
+    position: relative;
   }
   
   .nav-item:hover {
@@ -178,11 +172,41 @@
   }
   
   .nav-item.active {
-    border-bottom: 2px solid var(--white);
+    position: relative;
   }
   
-  .certification-logos {
+  .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+  }
+  
+  /* Logos centrales */
+  .center-logos {
     display: none;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+  
+  .santillana-logo img, .compartir-logo img {
+    height: 50px;
+    object-fit: contain;
+  }
+  
+  .compartir-logo img {
+    height: 40px;
+  }
+  
+  /* Certificaciones */
+  .certifications {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .cert-logo {
@@ -191,15 +215,7 @@
     object-fit: contain;
   }
   
-  .cert-logo.small {
-    height: 40px;
-  }
-  
-  .cert-group {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
+  /* Botón de menú móvil */
   .mobile-menu-btn {
     background: transparent;
     border: none;
@@ -208,6 +224,7 @@
     cursor: pointer;
   }
   
+  /* Menú móvil */
   .mobile-nav {
     display: none;
     background-color: var(--white);
@@ -733,6 +750,30 @@
     font-size: 0.875rem;
   }
   
+  /* WhatsApp Button */
+  .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    transition: all 0.3s;
+  }
+  
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+  }
+  
   /* Media Queries */
   @media (min-width: 640px) {
     .hero-content h2 {
@@ -745,10 +786,12 @@
   }
   
   @media (min-width: 768px) {
-    .desktop-nav {
+    .header-content {
+      flex-wrap: nowrap;
+    }
+  
+    .main-nav {
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
     }
   
     .mobile-menu-btn {
@@ -777,10 +820,31 @@
   }
   
   @media (min-width: 1024px) {
-    .certification-logos {
-      display: flex;
+    .header-content {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 1rem;
+    }
+  
+    .logo-section {
+      grid-column: 1;
+    }
+  
+    .main-nav {
+      grid-column: 2;
+      display: flex;
+    }
+  
+    .center-logos {
+      display: flex;
+      grid-column: 2;
+      margin-top: 0.5rem;
+    }
+  
+    .certifications {
+      grid-column: 3;
+      display: flex;
+      justify-content: flex-end;
     }
   
     .education-grid {
@@ -797,5 +861,11 @@
   
     .footer-grid {
       grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .header-content {
+      padding: 0.75rem 0;
     }
   }
